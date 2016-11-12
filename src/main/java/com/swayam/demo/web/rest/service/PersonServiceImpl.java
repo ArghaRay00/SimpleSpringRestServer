@@ -28,4 +28,10 @@ public class PersonServiceImpl implements PersonService {
 		personDao.saveDetails(p);
 
 	}
+
+	@Override
+	public Person getPerson(int id) {
+		return personDao.getPerson(id);
+
+	}
 }

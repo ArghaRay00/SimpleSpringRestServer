@@ -53,4 +53,11 @@ public class PersonDaoImpl implements PersonDao {
 		LOGGER.debug("rows affected is {}", rows);
 
 	}
+
+	@Override
+	public Person getPerson(int id) {
+		String sql = "select * from Persons where P_Id=?";
+		List<Person> persons = jdbcTemplate.query(sql, new Object[] { id }, new PersonMapper());
+		return persons.get(0);
+	}
 }

@@ -29,11 +29,19 @@ public class SimpleFormController {
 	}
 
 	@RequestMapping(path = { "/personform.html" }, method = { RequestMethod.GET })
-	public ModelAndView viewForm(@RequestParam(name = "id", required = false) String id) {
-		LOGGER.debug("person ID is {}", id);
 
+	public ModelAndView viewForm(@RequestParam(name = "id", required = false) Integer id) {
+		LOGGER.debug("person ID is {}", id);
+		if (id == null) {
+			Map<String, Object> userObjects = new HashMap<>();
+			Person p = new Person();
+			userObjects.put("command", p);
+			return new ModelAndView("Simpleform", userObjects);
+		}
+
+		Person reqDetail = personService.getPerson(id);
 		Map<String, Object> userObjects = new HashMap<>();
-		userObjects.put("command", new Person());
+		userObjects.put("command", reqDetail);
 		return new ModelAndView("Simpleform", userObjects);
 
 	}

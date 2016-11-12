@@ -17,9 +17,11 @@
 		<c:forEach var="person" items="${persons}">
 
 <tr>
+	
     <td>${person.firstname}</td>
     <td>${person.lastname}</td> 
     <td>${person.pid}</td>
+    <td> <a href="personform.html?id=${person.pid}">Update</a></td>
   </tr>
   </c:forEach>
 
