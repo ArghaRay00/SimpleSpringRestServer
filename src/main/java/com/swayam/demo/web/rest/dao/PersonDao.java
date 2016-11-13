@@ -12,4 +12,9 @@ public interface PersonDao {
 
 	Person getPerson(int id);
 
+	boolean doesPidExist(int pid);
+
+	void updateRecord(Person p);
+
+	void deleteRecord(int pid);
 }

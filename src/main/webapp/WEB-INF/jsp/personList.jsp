@@ -9,23 +9,33 @@
 <body>
  <table style="width:100%" border="1">
  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
     <th>PID</th>
+    <th>FirstName</th> 
+    <th>LastName</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>Update</th>
+    <th>Delete</th>
   </tr>
  
 		<c:forEach var="person" items="${persons}">
 
 <tr>
-	
+	 <td>${person.pid}</td>
     <td>${person.firstname}</td>
     <td>${person.lastname}</td> 
-    <td>${person.pid}</td>
+     <td>${person.address}</td>
+      <td>${person.city}</td>
+   
     <td> <a href="personform.html?id=${person.pid}">Update</a></td>
+    <td> <a href="handleDeletion?id=${person.pid}">Delete</a></td>
   </tr>
   </c:forEach>
 
   
 </table>
+<form action="personform.html">
+    <input type="submit" value="Create New" />
+</form>
 </body>
 </html>

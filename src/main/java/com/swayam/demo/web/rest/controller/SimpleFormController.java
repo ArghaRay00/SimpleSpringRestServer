@@ -48,11 +48,28 @@ public class SimpleFormController {
 
 	@RequestMapping(path = { "/handlePostedForm" }, method = { RequestMethod.POST })
 	public ModelAndView handlePostedForm(@ModelAttribute Person p) {
+		if (personService.doesPidExist(p.getPid())) {
+			personService.updateRecord(p);
+			LOGGER.debug("updating a single record");
+			Map<String, Object> userObjects = new HashMap<>();
+			userObjects.put("command", p);
+			return new ModelAndView("Simpleform", userObjects);
+		}
+
 		LOGGER.debug("person from the form is {}", p);
 		personService.saveDetails(p);
+		LOGGER.debug("details saved");
+
 		Map<String, Object> userObjects = new HashMap<>();
 		userObjects.put("command", p);
 		return new ModelAndView("Simpleform", userObjects);
+
+	}
+
+	@RequestMapping(path = { "/handleDeletion" }, method = { RequestMethod.GET })
+	public String handleDeletion(@RequestParam(name = "id", required = true) int id) {
+		personService.deleteRecord(id);
+		return "redirect:/personlist.html";
 
 	}
 

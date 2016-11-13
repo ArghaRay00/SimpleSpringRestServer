@@ -10,4 +10,11 @@ public interface PersonService {
 	void saveDetails(Person p);
 
 	Person getPerson(int id);
+
+	boolean doesPidExist(int pid);
+
+	void updateRecord(Person p);
+
+	void deleteRecord(int pid);
+
 }

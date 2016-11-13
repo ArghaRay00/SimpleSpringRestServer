@@ -19,5 +19,6 @@ City: <form:input path="city" />
 <br/>
 <input type="submit" value="Submit" />
 </form:form>
+<a href="personlist.html"  >Home</a>
 </body>
 </html>

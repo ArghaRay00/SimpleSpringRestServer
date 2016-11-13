@@ -60,4 +60,37 @@ public class PersonDaoImpl implements PersonDao {
 		List<Person> persons = jdbcTemplate.query(sql, new Object[] { id }, new PersonMapper());
 		return persons.get(0);
 	}
-}
+
+	@Override
+	public boolean doesPidExist(int pid) {
+		String sql = "select count(*) from Persons where P_Id=?";
+		boolean result = false;
+
+		int count = jdbcTemplate.queryForObject(sql, new Object[] { pid }, Integer.class);
+
+		if (count > 0) {
+			result = true;
+		}
+
+		return result;
+	}
+
+	@Override
+	public void updateRecord(Person p) {
+		Object[] params = { p.getFirstname(), p.getLastname(), p.getAddress(), p.getCity(), p.getPid() };
+		String sql = "update Persons set firstname = ?, lastname=? ,address=? ,city=? where P_Id = ?";
+		int rows = jdbcTemplate.update(sql, params);
+
+		System.out.println(rows + " row(s) updated.");
+
+	}
+
+	@Override
+	public void deleteRecord(int pid) {
+		Object[] params = { pid };
+		String sql = "delete from Persons where P_Id=?";
+		int rows = jdbcTemplate.update(sql, params);
+		System.out.println(rows + " row(s) updated.");
+	}
+
+};

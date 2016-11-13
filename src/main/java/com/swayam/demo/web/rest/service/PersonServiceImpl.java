@@ -34,4 +34,22 @@ public class PersonServiceImpl implements PersonService {
 		return personDao.getPerson(id);
 
 	}
+
+	@Override
+	public boolean doesPidExist(int pid) {
+		return personDao.doesPidExist(pid);
+
+	}
+
+	@Override
+	public void updateRecord(Person p) {
+		personDao.updateRecord(p);
+
+	}
+
+	@Override
+	public void deleteRecord(int pid) {
+		personDao.deleteRecord(pid);
+
+	}
 }
